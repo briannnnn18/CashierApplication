@@ -7,6 +7,36 @@ namespace CashierApplication
         public frmPurchaseDiscountedItem()
         {
             InitializeComponent();
+           
+        }
+        private void frmPurchaseDiscountedItem_Load(object sender, EventArgs e)
+        {
+            // Add a menu strip
+            MenuStrip menuStrip = new MenuStrip();
+            ToolStripMenuItem fileToolStripMenuItem = new ToolStripMenuItem("File");
+            ToolStripMenuItem logoutToolStripMenuItem = new ToolStripMenuItem("Logout");
+            ToolStripMenuItem exitToolStripMenuItem = new ToolStripMenuItem("Exit");
+
+            fileToolStripMenuItem.DropDownItems.Add(logoutToolStripMenuItem);
+            fileToolStripMenuItem.DropDownItems.Add(exitToolStripMenuItem);
+            menuStrip.Items.Add(fileToolStripMenuItem);
+
+            this.Controls.Add(menuStrip);
+
+            // Handle the logout event
+            logoutToolStripMenuItem.Click += (sender, e) =>
+            {
+                this.Close();
+                frmLoginAccount form = new frmLoginAccount();
+                form.Show();
+            };
+
+            // Handle the exit event
+            exitToolStripMenuItem.Click += (sender, e) =>
+            {
+                Application.Exit();
+            }
+            ;
         }
 
         private void btnCompute_Click_1(object sender, EventArgs e)
